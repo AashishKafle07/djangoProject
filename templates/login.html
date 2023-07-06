@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    {% load static %} 
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    
+</head>
+<body>
+    {% if messages %}
+    {% for message in messages%}
+    {{message}}
+    {% endfor %}
+    {% endif %}
+  
+  <div class="page">
+    <form method="post" action="">
+        {% csrf_token %}
+        <h1>Login</h1>
+        
+        <div class="loginForm">
+            <label for="Username"></label>
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <input type="text" id="email"  class="form" name="email" required  placeholder="Username">
+        </div>
+        <div class="Password">
+            <label for="password"></label>
+            <i class="fa fa-lock" aria-hidden="false"></i>
+            <input type="password" id="password" class="form" name="password" required placeholder="Your password">
+            
+        </div>
+        <span class="error" id="passwordError"></span>
+        <label for="terms">
+            <input type="checkbox" name="terms" id="terms"> Remember Me
+        </label>
+        <div class="aTag">
+            <a href="password.html">Forget password?</a>
+            </div>
+        <input type="submit" id="loginButton" class="button" value="Login Now">
+        
+        <div class="pClass">
+            <p>
+               Don't you have an account?  <a href="register">Register Now</a>
+            </p>
+          </div>
+   
+    </form>
+</div>
+<script src="script.js"></script>
+
+  
+</body>
+</html>

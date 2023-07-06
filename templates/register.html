@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    {% load static %} 
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+<body>
+    {% if messages %}
+    {% for message in messages%}
+    {{message}}
+    {% endfor %}
+    {% endif %}
+    <div class="page">
+        <h1>Registration</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+            
+            <div class="fields">
+                <div class="input-fields">
+                    <label for="username">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                        <input type="text" name="username" id="username" placeholder="Enter your name">
+                    </label>
+                </div>
+                <div class="input-fields">
+                    <label for="email">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <input type="email" id="email" name="email" required placeholder=" Enter Your Email">
+                      </label>
+                </div>
+                <div class="Password">
+                    <label for="passsword">
+                        <i class="fa fa-lock" aria-hidden="false"></i>
+                        <input type="password" name="password" id="password" required placeholder="Create a password">
+                        
+                    </label>
+                    <span class="error" id="passwordError"></span>
+                </div>
+                <div class="input-fields">
+                    <label for="confirm-password">
+                        <i class="fa fa-lock" aria-hidden="false"></i>
+                        <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm your password">
+                      
+                    </label>
+                    
+                </div>
+                <label for="terms">
+                    <input type="checkbox" name="terms" id="terms"> I accept all terms & conditions
+                </label>
+                <div class="btn">
+                    <input type="submit" value="Register Now">
+                </div>
+                <div class="pClass">
+                    Already have an account? <a href="/">Login</a>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    
+    <script src="script.js">
+    </script>
+</body>
+</html>
+
+
