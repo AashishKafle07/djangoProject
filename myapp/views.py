@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponse,redirect
-from myapp.models import RegisterUser
 from django.contrib import messages
-from django.contrib.auth.models import User
+from myapp.models import CustomUser
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
@@ -12,9 +11,14 @@ def register(request):
         password= request.POST.get("password")
         confirmPassword=request.POST.get("confirm-password")
         if password==confirmPassword:
-            User.objects.create_user(username=name,email=email,password=password)
+            try:
+                CustomUser.objects.create_user(username=name,email=email,password=password)
+                
+                messages.success(request,'User is successfully registered')
+
+            except:
+                messages.error(request,"User with that email already exist")
             
-            messages.success(request,'User is successfully registered')
         else:
            messages.error(request,'Both password should be same')
     return render(request,"register.html")
@@ -33,13 +37,7 @@ def loginUser(request):
             return redirect("./home")
         else:
             messages.error(request,"Invalid username or password")
-
-
-    # allData=RegisterUser.objects.all().values()
-
-    # for data in allData:
-    #     print(data['email'])
-    #     print(data['password'])
     return render(request,"login.html")
+
 def homePage(request):
     return render(request,"home.html")
